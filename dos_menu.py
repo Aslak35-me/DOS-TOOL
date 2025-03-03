@@ -1,9 +1,12 @@
 import os
+from colorama import init, Fore, Back, Style
+
+init(autoreset=True)
 
 def main_menu():
     while True:
         os.system("clear")
-        print(" ##### DOS TOOL ##### ")
+        print(Fore.GREEN + "##### DOS TOOL #####")
         print(" _____________________")
         print(" |                   |")
         print(" |                   |")
@@ -12,65 +15,58 @@ def main_menu():
         print(" |____________________")
         print("     BY ASLAK35 !     ")
         print("                      ")
-        print("1. Minecraft DOS Saldırısı")
-        print("2. Firewall - Rate Limiting Testi")
-        print("3. HTTP Flood Testi")
-        print("4. Argparse DOS Aracı")
-        print("5. Çıkış")
+        print(Fore.CYAN + "1. Minecraft DOS Saldırısı")
+        print(Fore.CYAN + "2. Firewall - Rate Limiting Testi")
+        print(Fore.CYAN + "3. HTTP Flood Testi")
+        print(Fore.CYAN + "4. Argparse DOS Aracı")
+        print(Fore.YELLOW + "5. Çıkış")
 
-        choice = input("Seçiminizi yapın: ")
+        choice = input(Fore.MAGENTA + "Seçiminizi yapın: ")
 
         if choice == "1":
             os.system("clear")
-            print("Minecraft DOS Aracı Başlatılıyor…")
-            ip = input("Hedef IP: ")
-            port = input("Port: ")
-            count = input("Kaç paket gönderilecek: ")
+            print(Fore.GREEN + "Minecraft DOS Aracı Başlatılıyor…")
+            ip = input(Fore.YELLOW + "Hedef IP: ")
+            port = input(Fore.YELLOW + "Port: ")
+            count = input(Fore.YELLOW + "Kaç paket gönderilecek: ")
             os.system(f"python3 mc_dos.py {ip} {port} {count}")
-            input("\nDevam etmek için ENTER'a basın…")
+            input(Fore.CYAN + "\nDevam etmek için ENTER'a basın…")
 
         elif choice == "2":
             os.system("clear")
-            print("Firewall - Rate Limiting Testi Başlatılıyor…")
-            ip = input("Hedef IP: ")
-            port = input("Port (varsayılan 80): ")
-            if not port:
-                port = 80
-            count = input("Paket sayısı (varsayılan 10): ")
-            if not count:
-                count = 10
-            # Burada security_test.py yerine firewall_test.py kullanılacak
-            os.system(f"python3 firewall_test.py --ip {ip} --port {port} --count {count}")
-            input("\nDevam etmek için ENTER'a basın…")
+            print(Fore.GREEN + "Firewall - Rate Limiting Testi Başlatılıyor…")
+            ip = input(Fore.YELLOW + "Hedef IP: ")
+            port = input(Fore.YELLOW + "Port (varsayılan 80): ") or 80
+            count = input(Fore.YELLOW + "Paket sayısı (varsayılan 10): ") or 10
+            os.system(f"python3 firewall_test.py {ip} {port} {count}")
+            input(Fore.CYAN + "\nDevam etmek için ENTER'a basın…")
 
         elif choice == "3":
             os.system("clear")
-            print("HTTP Flood Testi Başlatılıyor…")
-            url = input("Hedef URL: ")
-            count = input("Kaç istek gönderilecek: ")
-            threads = input("Kaç thread kullanılacak: ")
-            if not threads:
-                threads = 10  # Varsayılan thread sayısı
+            print(Fore.GREEN + "HTTP Flood Testi Başlatılıyor…")
+            url = input(Fore.YELLOW + "Hedef URL: ")
+            count = input(Fore.YELLOW + "Kaç istek gönderilecek: ")
+            threads = input(Fore.YELLOW + "Kaç thread kullanılacak: ")
             os.system(f"python3 http_flood.py {url} {count} {threads}")
-            input("\nDevam etmek için ENTER'a basın…")
+            input(Fore.CYAN + "\nDevam etmek için ENTER'a basın…")
 
         elif choice == "4":
             os.system("clear")
-            print("Argparse DOS Aracı Başlatılıyor…")
-            ip = input("Hedef IP: ")
-            port = input("Port: ")
-            count = input("Kaç paket gönderilecek: ")
+            print(Fore.GREEN + "Argparse DOS Aracı Başlatılıyor…")
+            ip = input(Fore.YELLOW + "Hedef IP: ")
+            port = input(Fore.YELLOW + "Port: ")
+            count = input(Fore.YELLOW + "Kaç paket gönderilecek: ")
             os.system(f"python3 argparse_dos.py {ip} {port} {count}")
-            input("\nDevam etmek için ENTER'a basın…")
+            input(Fore.CYAN + "\nDevam etmek için ENTER'a basın…")
 
         elif choice == "5":
             os.system("clear")
-            print("Çıkış yapılıyor…")
+            print(Fore.RED + "Çıkış yapılıyor…")
             break
 
         else:
-            print("Geçersiz seçim! Tekrar deneyin.")
-            input("\nDevam etmek için ENTER'a basın…")
+            print(Fore.RED + "Geçersiz seçim! Tekrar deneyin.")
+            input(Fore.CYAN + "\nDevam etmek için ENTER'a basın…")
 
 if __name__ == "__main__":
     main_menu()
